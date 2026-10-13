@@ -38,10 +38,10 @@ try {
     }
 
     $configObj = Get-Content $configFile -Raw | ConvertFrom-Json
-    if ($configObj.provider.router.apiKey -ne "test-key-abc") {
+    if ($configObj.provider.custom.apiKey -ne "test-key-abc") {
         throw "ASSERTION FAILED: apiKey mismatch in opencode.json"
     }
-    if ($configObj.provider.router.baseURL -ne "https://test.local") {
+    if ($configObj.provider.custom.baseURL -ne "https://test.local") {
         throw "ASSERTION FAILED: baseURL mismatch in opencode.json"
     }
 

@@ -500,7 +500,7 @@ if (Test-Path $OpenCodeConfig) {
         }
     } else {
         $choice = Read-Host "[?] File cau hinh '$OpenCodeConfig' da ton tai. Ban co muon [O]verwrite (ghi de), [M]erge (hop nhat), hay [S]kip (bo qua)? [O/M/s]"
-        if ($choice.Trim().ToLower() -eq 'm') {
+        if (-not [string]::IsNullOrWhiteSpace($choice) -and $choice.Trim().ToLower() -eq 'm') {
             Write-Host "  -> Dang hop nhat cau hinh MCP vao $OpenCodeConfig..." -ForegroundColor Cyan
             $existing = Get-Content $OpenCodeConfig -Raw -Encoding UTF8 | ConvertFrom-Json
             if ($existing.mcp) {
@@ -514,7 +514,7 @@ if (Test-Path $OpenCodeConfig) {
                 $existing | ConvertTo-Json -Depth 10 | Set-Content -Path $OpenCodeConfig -Encoding UTF8
             }
             Write-Host "  -> Hop nhat thanh cong." -ForegroundColor Green
-        } elseif ($choice.Trim().ToLower() -eq 's') {
+        } elseif (-not [string]::IsNullOrWhiteSpace($choice) -and $choice.Trim().ToLower() -eq 's') {
             Write-Host "  -> Bo qua ghi file $OpenCodeConfig." -ForegroundColor DarkGray
         } else {
             if (-not $DryRun) {
@@ -546,7 +546,7 @@ if (-not $DryRun) {
                 Copy-Item -Path $src -Destination $dst -Force
             } else {
                 $choice = Read-Host "[?] File '$dst' da ton tai. Ban co muon [O]verwrite (ghi de) hay [S]kip (bo qua)? [O/s]"
-                if ($choice.Trim().ToLower() -eq 's') {
+                if (-not [string]::IsNullOrWhiteSpace($choice) -and $choice.Trim().ToLower() -eq 's') {
                     Write-Host "  -> Bo qua file $dst." -ForegroundColor DarkGray
                 } else {
                     $bak = "$dst.bak"

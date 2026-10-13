@@ -530,10 +530,10 @@ if (Test-Path $OpenCodeConfig) {
     Write-Host "  -> Tao moi file $OpenCodeConfig thanh cong." -ForegroundColor Green
 }
 
-# 9. Sao chep static files: AGENTS.md, RULES.md, SYSTEM.md, skills/
+# 9. Sao chep static files: AGENTS.md, skills/ va don dep legacy files
 Write-Host "==> Sao chep static files va skills..." -ForegroundColor Cyan
 if (-not $DryRun) {
-    foreach ($f in @("AGENTS.md", "RULES.md", "SYSTEM.md")) {
+    foreach ($f in @("AGENTS.md")) {
         $src = Join-Path $PSScriptRoot $f
         $dst = Join-Path $OpenCodeDir $f
         if (-not (Test-Path $src)) { continue }
@@ -558,6 +558,16 @@ if (-not $DryRun) {
         } else {
             Copy-Item -Path $src -Destination $dst -Force
             Write-Host "  -> Tao moi file $dst thanh cong." -ForegroundColor Green
+        }
+    }
+
+    # Don dep cac file cu khong con dung trong OpenCode (RULES.md, SYSTEM.md) va chuyen vao Thung rac
+    $legacyFiles = @("RULES.md", "SYSTEM.md")
+    foreach ($leg in $legacyFiles) {
+        $oldFilePath = Join-Path $OpenCodeDir $leg
+        if (Test-Path $oldFilePath) {
+            Write-Host "  -> Don dep file cu khong thuoc dac ta OpenCode: $oldFilePath (chuyen vao Thung rac)..." -ForegroundColor Cyan
+            Move-ToRecycleBinFile -Path $oldFilePath
         }
     }
     $skillsSrc = Join-Path $PSScriptRoot "skills"

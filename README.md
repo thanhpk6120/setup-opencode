@@ -29,7 +29,6 @@ irm https://raw.githubusercontent.com/thanhpk6120/setup-opencode/main/install.ps
 * **Thư mục cấu hình:** `~/.config/opencode/` (hoặc `%USERPROFILE%\.config\opencode\`)
 * **File cấu hình chính:** `~/.config/opencode/opencode.json`
 * **Agent Guidelines:** `~/.config/opencode/AGENTS.md`
-* **Quy chuẩn Rules:** `~/.config/opencode/RULES.md`
 * **Skills nghiệp vụ:** `~/.config/opencode/skills/`
 
 ---

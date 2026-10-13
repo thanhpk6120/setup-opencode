@@ -45,10 +45,16 @@ try {
         throw "ASSERTION FAILED: baseURL mismatch in opencode.json"
     }
 
-    foreach ($f in @("AGENTS.md", "RULES.md", "SYSTEM.md")) {
+    foreach ($f in @("AGENTS.md")) {
         $p = Join-Path $tempDir $f
         if (-not (Test-Path $p)) {
             throw "ASSERTION FAILED: Missing copied static file: $p"
+        }
+    }
+    foreach ($f in @("RULES.md", "SYSTEM.md")) {
+        $p = Join-Path $tempDir $f
+        if (Test-Path $p) {
+            throw "ASSERTION FAILED: Legacy file should not exist: $p"
         }
     }
 

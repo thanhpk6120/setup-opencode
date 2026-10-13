@@ -309,7 +309,7 @@ if ($installGlab) {
 $shouldSetupHook = $false
 if ($EnableMemorix) {
     if (-not $SkipInstall) {
-        Write-Host "==> Installing memorix globally..." -ForegroundColor Cyan
+        Write-Host "==> Dang cai dat / cap nhat Memorix len phien ban moi nhat (npm install -g memorix)..." -ForegroundColor Cyan
         if (-not $DryRun) {
             try { npm install -g memorix } catch { Write-Warning "memorix install failed: $($_.Exception.Message)" }
         }

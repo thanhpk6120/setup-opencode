@@ -28,7 +28,7 @@ if (-not $opencodeCmd) {
 }
 
 # 2. Thu thap AI URL va API Key
-Write-Host "`n==> Thiet lap AI Model Gateway (OpenAI-compatible / 9router):" -ForegroundColor Cyan
+Write-Host "`n==> Thiet lap AI Model Gateway (OpenAI-compatible / Custom Gateway):" -ForegroundColor Cyan
 $aiBaseUrl = "http://localhost:20128/v1"
 Write-Host "  -> AI Base URL co dinh mac dinh: $aiBaseUrl" -ForegroundColor Green
 
